@@ -61,7 +61,7 @@ function preprocessDate() {
 }
 
 function dirAddr() {
-    echo "$RootAddr/$2/$1/$0"
+    echo "$RootAddr/$3/$2/$1"
 }
 
 function show() {
@@ -71,7 +71,7 @@ function show() {
 
     for d in $@; do
         d=$(preprocessDate $d)
-        echo $d
+        echo "Opening: $d"
         IFS='-' read -a d <<< $d
         DirAddr=$(dirAddr ${d[@]})
         if [ ! -d "$DirAddr" ]; then
