@@ -1,4 +1,4 @@
-RootAddr="${HOME}/.NeverForget"
+RootAddr="${HOME}/.feedback"
 
 function main() {
     if [ $# == 0 ]; then
@@ -7,6 +7,8 @@ function main() {
     fi
     if [ $1 == "find" ]; then
         findContent ${@:2}
+    elif [ $1 == "toggle" ]; then
+        togglewindow
     else
         $1 ${@:2}
     fi
@@ -14,6 +16,10 @@ function main() {
 
 function help() {
     echo "Available commands: revise, find, show"
+}
+
+function togglewindow() {
+    if [[ $(wmctrl -lpG | while read -a a; do w=${a[0]}; if (($((16#${w:2}))==$(xdotool getactivewindow))) ; then echo ${a[@]:8}; break; fi; done) == *'/.feedback/'* ]]; then xdotool windowminimize $(xdotool getactivewindow); else wmctrl -a /.feedback/; fi
 }
 
 function findContent() {
@@ -100,7 +106,7 @@ function revise() {
     days_revision=8
     date_today=$(todaysDate)
     for i in `seq 1 $days_revision`; do
-        d=$(date "--date=$date_today - $subtract day" +%d-%m-%Y)
+        d=$(date "--date=$date_today - $(($subtract-1)) day" +%d-%m-%Y)
         IFS='-' read -a dt <<< $d
         if [ -d "$(dirAddr ${dt[@]})" ]; then
             show $d
