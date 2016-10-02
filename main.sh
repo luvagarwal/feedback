@@ -72,7 +72,7 @@ function dirAddr() {
 
 function show() {
     if [ $# -eq 0 ]; then
-        set -- $(date +%d-%m-%Y)
+        set -- $(date -d "$(todaysDate)" +%d-%m-%Y)
     fi
 
     for d in $@; do
