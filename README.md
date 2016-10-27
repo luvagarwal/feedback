@@ -8,7 +8,7 @@ The way it works is, it maintains a file / multiple files corresponding to each 
 Download: `git clone https://github.com/luviiit/feedback.git`
 
 You should place the output of this command in your .bashrc, bash_profile, .zshrc or other startup script
-`echo "alias fb=\"bash $(pwd)/feedback/main.sh\""
+`echo "alias fb=\"bash $(pwd)/feedback/main.sh\""`
 
 ## Available Commands
 - fb show <args>
