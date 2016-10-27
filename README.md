@@ -1,4 +1,3 @@
-(DRAFT VERSION)
 ## Feedback
 A simple tool to facilitate Spaced Repetition for linux / MAC users.
 In case you don't know about spaced repitition, it is a technique where things that you learn are revised with exponentially increasing space b/w two consecutive revisions. For more details about it's working, visit [mediumpost]
