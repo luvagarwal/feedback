@@ -1,8 +1,7 @@
 ## Feedback
-A simple tool to facilitate Spaced Repetition for linux / MAC users.
-In case you don't know about spaced repitition, it is a technique where things that you learn are revised with exponentially increasing space b/w two consecutive revisions. For more details about it's working, visit [mediumpost]
+It’s a Linux shell based tool that I use to facilitate active learning and timed revision, and maintain an organised database of the things that I have learnt. It maintains a directory for each day and the whole directory structure is organised as “year/month/date/”. Directories corresponding to each day contains a few default files, which can be configured.
 
-The way it works is, it maintains a file / multiple files corresponding to each day (you can configure this) and uses gedit (linux) / TextEdit (Mac) to show files. Reason why such a simple file based approach is good is that first of all, you can use it for anything. It's not limited to any particular application or any particular type of content. Secondly, you don't have to install anything. Any of your favourite editor can be used to open files. Other than this, you can use to maintain other things like todos, books to read, movies or anything that you files to maintain
+In short, it provides a quick and organised way to store and retrieve information, revise it, and quickly search in it if required.
 
 ## Installation Instructions
 Download: `git clone https://github.com/luviiit/feedback.git`
