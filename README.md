@@ -10,11 +10,11 @@ You should place the output of this command in your .bashrc, bash_profile, .zshr
 `echo "alias fb=\"bash $(pwd)/feedback/main.sh\""`
 
 ## Available Commands
-- fb show <args>
-- fb find <args>
+- fb show
+- fb find
 - fb revise
 
-### fb show <date>
+### fb show \<date\>
 It open files for the given date. If the date is not provided, it will open files for the current day. Date can be provided in following formats:
 - `%d/%m/%y` Ex: 7/10/15
 - `%d-%m-%y` Ex. 7-10-15
@@ -22,7 +22,7 @@ It open files for the given date. If the date is not provided, it will open file
 
 In case any of day, month or year is not given, they are assumed to be the current one. For ex: `fb show 7` will open files corresponding to 07-2-2017 (if today's month is february and year is 2017) . `fb show` will open files for today.
 
-### fb show -c <custom file address>
+### fb show -c \<custom file address\>
 It will simply open a file at ~/.feedback/Custom/<custom file address>. This feature is a good replacement for cases when you need to store information for particular topics like for a project, a technology you are learning,  etc. As a reference, I have following custom files to name a few: ideas, movies, blogs/feedback, books/black-swan, etc.
 
 Note that it comes with tab completion feature so that you don’t have to remember and type complete file address.
