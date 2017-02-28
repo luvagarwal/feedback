@@ -32,6 +32,3 @@ It will search for the given string in all the feedback files. For eg, to search
 
 ### fb revise
 It will open files corresponding to the days you have to revise.
-
-Features to add:
-- [ ] Build a tagging system
