@@ -1,7 +1,7 @@
 ## Feedback
-It’s a Linux shell based tool that I use to facilitate active learning and timed revision, and maintain an organised database of the things that I have learnt. It maintains a directory for each day and the whole directory structure is organised as “year/month/date/”. Directories corresponding to each day contains a few default files, which can be configured.
+It’s a Linux shell based tool that I use to facilitate active learning and timed revision, and maintain a database of the things that I have learnt. It maintains a directory for each day, and these directories are  organised in a “year/month/date/” hierarchy. Each of these directories contains a few default files, which can be configured.
 
-In short, it provides a quick and organised way to store and retrieve information, revise it, and search in it if required.
+In short, it provides an organised way to store and retrieve information, revise it, and search in it if required.
 
 ## Installation Instructions
 Download: `git clone https://github.com/luviiit/feedback.git`
