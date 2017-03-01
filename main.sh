@@ -1,7 +1,9 @@
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+source "$DIR/conf.sh"
+
 rootAddr="${HOME}/.feedback"
 customAddr="$rootAddr/Custom"
-memoryFactor=2
-daysRevision=8
+learningFactor=2
 
 function main() {
     if [ $# == 0 ]; then
@@ -78,10 +80,22 @@ function preprocessDate() {
 
 function openFile() {
     if [ $(uname) == 'Linux' ]; then
-        gedit $1 &
+        for f in $1; do
+            "$EDITORCOMMAND" "$f" &
+        done
+        # find $1 -type f -exec "$EDITORCOMMAND" {} \;
     else
         # For Mac
         open -e $1 &
+    fi
+}
+
+function openDir() {
+    if [ $(uname) == 'Linux' ]; then
+        nautilus $1 &
+    else
+        # For Mac
+        open $1 &
     fi
 }
 
@@ -91,24 +105,30 @@ function show() {
         set -- $(date -d "$(todaysDate)" +%d-%m-%Y)
     fi
 
+    if [ ! -d "$customAddr" ]; then
+        mkdir -p "$customAddr"
+    fi
+
     # Check if custom file
     case "$1" in
     "-c" )
-       if [ ! -d "$customAddr" ]; then
-            mkdir -p "$customAddr"
+        if [[ $(dirname $2) != "." ]]; then
+            mkdir -p "$customAddr/$(dirname $2)"
+        fi
+        if [ ! -f "$customAddr/$2" ]; then
+            touch "$customAddr/$2"
         fi
         echo "Opening $customAddr/$2"
         openFile "$customAddr/$2"
         ;;&
     "-l" )
-       if [ -d "$customAddr" ]; then
-            ls "$customAddr"
-        fi
+        ls "$customAddr"
         ;;&
+    "-o" )
+		openDir "$customAddr"
+		;;&
     "-r" )
-        if [ -d "$customAddr" ]; then
-            rm "$customAddr/$2"
-        fi
+        rm "$customAddr/$2"
         ;;&
     "-"* ) exit 0
        ;;
@@ -121,8 +141,9 @@ function show() {
         DirAddr=$(dirAddr ${d[@]})
         if [ ! -d "$DirAddr" ]; then
             mkdir -p "$DirAddr"
-            touch "$DirAddr/index"
-            touch "$DirAddr/todo"
+            for f in ${DEFAULTFILES[@]}; do
+                touch "$DirAddr/$f"
+            done
         fi
         openFile "$DirAddr/*"
     done
@@ -149,17 +170,17 @@ function revise() {
     fi
 
     subtract=0
-    space="$memoryFactor"
+    space="$learningFactor"
     date_today=$(todaysDate)
 
-    for i in `seq 1 $daysRevision`; do
+    for i in `seq 1 $DAYSREVISION`; do
         d=$(date "--date=$date_today - $subtract day" +%d-%m-%Y)
         IFS='-' read -a dt <<< $d
         if [ -d "$(dirAddr ${dt[@]})" ]; then
             show $d
         fi
         subtract=$(($subtract + $space))
-        space=$(($space * $memoryFactor))
+        space=$(($space * $learningFactor))
     done
 }
 
