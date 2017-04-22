@@ -1,0 +1,10 @@
+Key bindings for Linux users:
+sudo apt install wmctrl
+sudo apt install xdotool
+sudo apt install xbindkeys
+xbindkeys -p # to refresh
+kill $(pgrep xbindkeys) && nohup xbindkeys # If over refresh doesn't work
+xbindkeys -k # to check keycode for any combination
+cp feedback/xbindkeyssrc ~/.xbindkeyssrc
+nohup xbindkeys
+
