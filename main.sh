@@ -120,19 +120,19 @@ function show() {
         fi
         echo "Opening $customAddr/$2"
         openFile "$customAddr/$2"
-        ;;&
+        ;;
     "-l" )
         ls "$customAddr"
-        ;;&
+        ;;
     "-o" )
 		openDir "$customAddr"
-		;;&
+		;;
     "-r" )
         rm "$customAddr/$2"
-        ;;&
-    "-"* ) exit 0
-       ;;
+        ;;
     esac
+
+    if [[ "$1" =~ "-"* ]]; then exit 0; fi
 
     for fname in $@; do
         d=$(preprocessDate $fname)
